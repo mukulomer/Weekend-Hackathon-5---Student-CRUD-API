@@ -31,6 +31,7 @@ app.get('/api/student/:id',(req,res)=>{
      res.send(Student);
    
 });
+let Id = student.length;
 
 app.post('/api/student',(req,res)=>{
    
@@ -40,7 +41,7 @@ app.post('/api/student',(req,res)=>{
         division: req.body.division
     };
    
-     
+   
     if(!schema.name|| !schema.currentClass || !schema.division)
     {
         res.status(400).send("Incomplete data");
@@ -51,9 +52,11 @@ app.post('/api/student',(req,res)=>{
     }
     student.push(obj);
 
-    res.type('application/x-www-form-urlencoded').send(student[student.length-1]);
+    res.type('application/x-www-form-urlencoded').send(onj.id);
 
 });
+
+
 
 app.put('/api/student/:id',(req,res)=>{
 
@@ -71,15 +74,16 @@ app.put('/api/student/:id',(req,res)=>{
     currentClass: req.body.currentClass,
     division: req.body.division
    };
-
+  
+  
 if(!schema.name|| !schema.currentClass || !schema.division)
     {
         res.status(400).send("Incomplete data");
         return;
     }
     
-    student.splice(id,1,schema);
-    res.type('application/x-www-form-urlencoded').send(student[id]);
+    student.splice(parseInt(req.params.id), 1,schema);
+    res.type('application/x-www-form-urlencoded').send(student);
 
 });
 
