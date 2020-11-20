@@ -39,21 +39,19 @@ app.get('/api/student/:id',(req,res)=>{
 app.post('/api/student',(req,res)=>{
    
     const schema ={
+        id: ID+1,
         name: req.body.name,
         currentClass: req.body.currentClass,
         division: req.body.division
     };
-   
    
     if(!schema.name|| !schema.currentClass || !schema.division)
     {
         res.status(400).send("Incomplete data");
         return;
     }
-    const obj = {
-        id:student.length+1, ...req.body
-    }
-    student.push(obj);
+  
+    student.push(schema);
      ID++;
     res.send({id: ID});
 
