@@ -11,6 +11,9 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 // your code goes here
+
+
+
 app.get('/api/student',(req,res)=>{
 
     res.send(student);
@@ -31,7 +34,7 @@ app.get('/api/student/:id',(req,res)=>{
      res.send(Student);
    
 });
-let Id = student.length;
+
 
 app.post('/api/student',(req,res)=>{
    
@@ -52,7 +55,7 @@ app.post('/api/student',(req,res)=>{
     }
     student.push(obj);
 
-    res.type('application/x-www-form-urlencoded').send(onj.id);
+    res.send({id: obj.id});
 
 });
 
@@ -96,9 +99,9 @@ app.delete('/api/student/:id',(req,res)=>{
        return;   
     }
    
-    student.splice(id,1);
+    student.splice(parseInt(req.params.id)-1,1);
 
-    res.status(200).send(id);
+    res.status(200).send(student);
  
 
 });
