@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 // your code goes here
 
-
+let ID = student.length;
 
 app.get('/api/student',(req,res)=>{
 
@@ -54,8 +54,8 @@ app.post('/api/student',(req,res)=>{
         id:student.length+1, ...req.body
     }
     student.push(obj);
-
-    res.send({id: obj.id});
+     ID++;
+    res.send({id: ID});
 
 });
 
